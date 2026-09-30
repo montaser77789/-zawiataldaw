@@ -1,0 +1,44 @@
+name: Deploy Diamond
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy
+        uses: appleboy/ssh-action@v1.2.0
+
+        with:
+          host: 185.158.107.240
+          username: root
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: 22
+
+          timeout: 120s
+          command_timeout: 30m
+          script_stop: true
+
+          script: |
+            git config --global --add safe.directory /var/www/diamond
+
+            cd /var/www/diamond
+
+            git fetch origin
+            git reset --hard origin/main
+
+            npm install
+
+            rm -rf .next
+
+            npm run build
+
+            pm2 restart diamond || pm2 start npm --name diamond -- start -- -p 3001
+
+            pm2 save
