@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 
 const editorialImages = [
@@ -34,16 +32,14 @@ const editorialImages = [
 
 export default function EditorialImageComposition() {
   return (
-    <section className="relative bg-background px-3 py-16 sm:px-5 sm:py-20 lg:py-28">
+    <section className="section px-4 sm:px-6 lg:px-8 xl:px-10">
       <div className="mx-auto max-w-[1500px]">
-        <div className="mb-12 text-center sm:mb-16 lg:max-w-[700px] lg:mx-auto">
-          <p className="mb-4 flex items-center justify-center gap-3 text-[12px] font-semibold tracking-[0.12em] text-text-secondary sm:text-[13px]">
-            <span className="h-[2px] w-8 bg-primary" /> 03 / لغة العمارة
-          </p>
-          <h2 className="text-[34px] font-bold leading-[1.3] text-text-primary sm:text-[44px] lg:text-[52px]">
-            ثلاث زوايا، <span className="text-primary">قصة واحدة</span>
+        <div className="mb-12 text-center sm:mb-14 lg:max-w-[700px] lg:mx-auto">
+          <p className="section-label is-centered justify-center">03 / لغة العمارة</p>
+          <h2 className="section-title">
+            ثلاث زوايا، <span className="text-accent">قصة واحدة</span>
           </h2>
-          <p className="mt-5 max-w-[500px] mx-auto text-[15px] leading-[2] text-text-secondary sm:text-[17px]">
+          <p className="mt-5 max-w-[520px] mx-auto text-body text-text-secondary">
             كل صورة تعكس جانباً من فلسفتنا: التصميم يتشكل من الموقع، والتفاصيل تصنع الفرق، والتنفيذ هو الاختبار الحقيقي.
           </p>
         </div>
@@ -54,9 +50,9 @@ export default function EditorialImageComposition() {
               <div className={`
                 ${editorialImages[0].className}
                 ${editorialImages[0].aspectRatio}
-                overflow-hidden bg-text-secondary
+                overflow-hidden bg-surface
                 transition-all duration-700
-                group-hover:shadow-[0_40px_80px_-16px_rgba(0,0,0,0.15)]
+                group-hover:shadow-xl
               `}>
                 <Image
                   src={editorialImages[0].src}
@@ -64,17 +60,13 @@ export default function EditorialImageComposition() {
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 58vw"
-                  className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
               </div>
-              <div className="mt-6 text-right">
-                <span className="font-mono text-[11px] text-primary tracking-[0.16em]">EDITORIAL / 0{editorialImages[0].index}</span>
-                <h3 className="mt-3 text-[22px] font-bold leading-[1.4] text-text-primary sm:text-[26px]">
-                  {editorialImages[0].caption}
-                </h3>
-                <p className="mt-3 max-w-[400px] text-[14px] leading-[1.9] text-text-secondary sm:text-[15px]">
-                  {editorialImages[0].description}
-                </p>
+              <div className="mt-6">
+                <span className="text-mono text-accent font-bold">EDITORIAL / 0{editorialImages[0].index}</span>
+                <h3 className="mt-3 text-h4 font-bold text-text-primary">{editorialImages[0].caption}</h3>
+                <p className="mt-3 max-w-[440px] text-body-sm text-text-secondary">{editorialImages[0].description}</p>
               </div>
             </div>
 
@@ -82,26 +74,22 @@ export default function EditorialImageComposition() {
               <div className={`
                 ${editorialImages[1].className}
                 ${editorialImages[1].aspectRatio}
-                overflow-hidden bg-text-secondary
+                overflow-hidden bg-surface
                 transition-all duration-700
-                group-hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.12)]
+                group-hover:shadow-lg
               `}>
                 <Image
                   src={editorialImages[1].src}
                   alt={editorialImages[1].alt}
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"
-                  className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.025]"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
               </div>
-              <div className="mt-5 text-right">
-                <span className="font-mono text-[11px] text-primary tracking-[0.16em]">EDITORIAL / 0{editorialImages[1].index}</span>
-                <h3 className="mt-2 text-[20px] font-bold leading-[1.4] text-text-primary sm:text-[24px]">
-                  {editorialImages[1].caption}
-                </h3>
-                <p className="mt-2 text-[14px] leading-[1.9] text-text-secondary sm:text-[15px]">
-                  {editorialImages[1].description}
-                </p>
+              <div className="mt-5">
+                <span className="text-mono text-accent font-bold">EDITORIAL / 0{editorialImages[1].index}</span>
+                <h3 className="mt-2 text-h4 font-bold text-text-primary">{editorialImages[1].caption}</h3>
+                <p className="mt-2 text-body-sm text-text-secondary">{editorialImages[1].description}</p>
               </div>
             </div>
           </div>
@@ -111,9 +99,9 @@ export default function EditorialImageComposition() {
               <div className={`
                 ${editorialImages[2].className}
                 ${editorialImages[2].aspectRatio}
-                overflow-hidden bg-text-secondary
+                overflow-hidden bg-surface
                 transition-all duration-700
-                group-hover:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.2)]
+                group-hover:shadow-xl
               `}>
                 <Image
                   src={editorialImages[2].src}
@@ -121,23 +109,16 @@ export default function EditorialImageComposition() {
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 65vw"
-                  className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.015]"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
               </div>
               <div className="mt-6 text-center">
-                <span className="font-mono text-[11px] text-primary tracking-[0.16em]">EDITORIAL / 0{editorialImages[2].index}</span>
-                <h3 className="mt-3 text-[22px] font-bold leading-[1.4] text-text-primary sm:text-[26px]">
-                  {editorialImages[2].caption}
-                </h3>
-                <p className="mt-3 max-w-[500px] mx-auto text-[14px] leading-[1.9] text-text-secondary sm:text-[15px]">
-                  {editorialImages[2].description}
-                </p>
+                <span className="text-mono text-accent font-bold">EDITORIAL / 0{editorialImages[2].index}</span>
+                <h3 className="mt-3 text-h4 font-bold text-text-primary">{editorialImages[2].caption}</h3>
+                <p className="mt-3 max-w-[520px] mx-auto text-body-sm text-text-secondary">{editorialImages[2].description}</p>
               </div>
             </div>
           </div>
-
-          <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[1px] h-20 bg-primary/30 hidden lg:block" aria-hidden="true" />
-          <div className="absolute -bottom-14 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary hidden lg:block" aria-hidden="true" />
         </div>
       </div>
     </section>

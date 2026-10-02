@@ -35,7 +35,7 @@ export default function CurvedGallery() {
       <div className="mx-auto max-w-[1500px]">
         <div className="mb-10 text-center sm:mb-14 lg:max-w-[700px] lg:mx-auto">
           <p className="mb-4 flex items-center justify-center gap-3 text-[12px] font-semibold tracking-[0.12em] text-text-secondary sm:text-[13px]">
-            <span className="h-[2px] w-8 bg-primary" /> 03 / لغة العمارة
+            <span className="h-[2px] w-8 bg-red" /> 03 / لغة العمارة
           </p>
           <h2 className="text-[34px] font-bold leading-[1.3] text-text-primary sm:text-[44px] lg:text-[52px]">
             حيث تلتقي الهندسة بالجمال
@@ -65,7 +65,7 @@ export default function CurvedGallery() {
                 />
               </div>
               <div className="mt-5 text-right rtl:text-right ltr:text-left">
-                <span className="font-mono text-[11px] text-primary tracking-[0.16em]">FIELD NOTES / 0{galleryImages[0].index}</span>
+                <span className="font-mono text-[11px] text-accent tracking-[0.16em]">FIELD NOTES / 0{galleryImages[0].index}</span>
                 <h3 className="mt-2 text-[20px] font-bold leading-[1.4] text-text-primary sm:text-[24px]">
                   {galleryImages[0].caption}
                 </h3>
@@ -89,7 +89,7 @@ export default function CurvedGallery() {
                 />
               </div>
               <div className="mt-5 text-right rtl:text-right ltr:text-left">
-                <span className="font-mono text-[11px] text-primary tracking-[0.16em]">FIELD NOTES / 0{galleryImages[1].index}</span>
+                <span className="font-mono text-[11px] text-accent tracking-[0.16em]">FIELD NOTES / 0{galleryImages[1].index}</span>
                 <h3 className="mt-2 text-[20px] font-bold leading-[1.4] text-text-primary sm:text-[24px]">
                   {galleryImages[1].caption}
                 </h3>
@@ -116,7 +116,7 @@ export default function CurvedGallery() {
                 />
               </div>
               <div className="mt-5 text-center">
-                <span className="font-mono text-[11px] text-primary tracking-[0.16em]">FIELD NOTES / 0{galleryImages[2].index}</span>
+                <span className="font-mono text-[11px] text-accent tracking-[0.16em]">FIELD NOTES / 0{galleryImages[2].index}</span>
                 <h3 className="mt-2 text-[20px] font-bold leading-[1.4] text-text-primary sm:text-[24px]">
                   {galleryImages[2].caption}
                 </h3>
@@ -124,8 +124,8 @@ export default function CurvedGallery() {
             </div>
           </div>
 
-          <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[1px] h-20 bg-primary/30 hidden lg:block" aria-hidden="true" />
-          <div className="absolute -bottom-14 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary hidden lg:block" aria-hidden="true" />
+          <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[1px] h-20 bg-red/30 hidden lg:block" aria-hidden="true" />
+          <div className="absolute -bottom-14 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-red hidden lg:block" aria-hidden="true" />
         </div>
       </div>
     </section>

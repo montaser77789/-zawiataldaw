@@ -8,13 +8,16 @@ import Footer from "@/components/layout/Footer/Footer";
 
 const cairo = Cairo({
   subsets: ["arabic"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   variable: "--font-heading",
+  display: "swap",
 });
 
 const ibmArabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
-  weight: ["300", "400", "500", "700"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-body",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -37,7 +40,7 @@ export default function RootLayout({
       dir="rtl"
       className={`${cairo.variable} ${ibmArabic.variable}`}
     >
-      <body className="min-h-screen overflow-x-hidden bg-background text-foreground font-[var(--font-body)]">
+      <body className="min-h-screen overflow-x-hidden bg-background text-foreground font-[var(--font-body)] antialiased">
         <Header />
 
         <main className="pt-[76px] lg:pt-[132px]">{children}</main>

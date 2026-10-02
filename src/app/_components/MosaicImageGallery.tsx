@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 
 const mosaicImages = [
@@ -39,16 +37,14 @@ const mosaicImages = [
 
 export default function MosaicImageGallery() {
   return (
-    <section className="relative bg-dark-surface px-3 py-16 sm:px-5 sm:py-20 lg:py-28">
+    <section className="overflow-hidden bg-ink px-4 py-16 sm:px-6 sm:py-20 lg:py-28 xl:px-8">
       <div className="mx-auto max-w-[1500px]">
-        <div className="mb-12 text-center sm:mb-16 lg:max-w-[700px] lg:mx-auto">
-          <p className="mb-4 flex items-center justify-center gap-3 text-[12px] font-semibold tracking-[0.12em] text-white/55 sm:text-[13px]">
-            <span className="h-[2px] w-8 bg-primary" /> 06 / من أرشيف الميدان
-          </p>
-          <h2 className="text-[34px] font-bold leading-[1.3] text-white sm:text-[44px] lg:text-[52px]">
-            لحظات <span className="text-primary">مختارة</span>
+        <div className="mb-12 text-center sm:mb-14 lg:max-w-[700px] lg:mx-auto">
+          <p className="section-label is-centered justify-center">06 / من أرشيف الميدان</p>
+          <h2 className="section-title-light">
+            لحظات <span className="text-red-bright">مختارة</span>
           </h2>
-          <p className="mt-5 max-w-[500px] mx-auto text-[15px] leading-[2] text-white/60 sm:text-[17px]">
+          <p className="mt-5 max-w-[520px] mx-auto text-body text-text-dark-secondary">
             أربع لقطات من مواقع مختلفة، بأحجام وزوايا متنوعة — لتكتمل الصورة دون تكرار.
           </p>
         </div>
@@ -59,9 +55,8 @@ export default function MosaicImageGallery() {
               <div className={`
                 ${mosaicImages[0].className}
                 ${mosaicImages[0].aspectRatio}
-                overflow-hidden bg-text-secondary
+                overflow-hidden bg-ink-lighter
                 transition-all duration-700
-                group-hover:shadow-[0_40px_80px_-16px_rgba(0,0,0,0.3)]
               `}>
                 <Image
                   src={mosaicImages[0].src}
@@ -69,12 +64,13 @@ export default function MosaicImageGallery() {
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 55vw, 45vw"
-                  className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
               </div>
-              <div className="absolute bottom-5 right-5 left-5 lg:bottom-8 lg:right-8 lg:left-8 bg-black/70 backdrop-blur-sm rounded-[12px] px-5 py-4 text-white">
-                <span className="font-mono text-[11px] text-primary tracking-[0.16em] block mb-2">FIELD NOTES / 0{mosaicImages[0].index}</span>
-                <h3 className="text-[18px] font-bold leading-[1.4] sm:text-[22px]">{mosaicImages[0].caption}</h3>
+              <div className="mt-4 flex items-center gap-3">
+                <span className="text-mono text-red-bright font-bold">FIELD / 0{mosaicImages[0].index}</span>
+                <span className="h-px flex-1 bg-white/15" />
+                <span className="text-body-sm font-semibold text-white">{mosaicImages[0].caption}</span>
               </div>
             </div>
 
@@ -83,21 +79,20 @@ export default function MosaicImageGallery() {
                 <div className={`
                   ${mosaicImages[1].className}
                   ${mosaicImages[1].aspectRatio}
-                  overflow-hidden bg-text-secondary
+                  overflow-hidden bg-ink-lighter
                   transition-all duration-700
-                  group-hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.25)]
                 `}>
                   <Image
                     src={mosaicImages[1].src}
                     alt={mosaicImages[1].alt}
                     fill
                     sizes="(max-width: 768px) 50vw, (max-width: 1024px) 28vw, 22vw"
-                    className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.025]"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                   />
                 </div>
-                <div className="absolute bottom-3 right-3 left-3 bg-black/70 backdrop-blur-sm rounded-[10px] px-4 py-3 text-white">
-                  <span className="font-mono text-[10px] text-primary tracking-[0.16em] block mb-1">FIELD NOTES / 0{mosaicImages[1].index}</span>
-                  <h3 className="text-[15px] font-bold leading-[1.4]">{mosaicImages[1].caption}</h3>
+                <div className="mt-3 flex items-center gap-2">
+                  <span className="text-mono text-red-bright font-bold">0{mosaicImages[1].index}</span>
+                  <span className="text-caption font-semibold text-text-dark-secondary">{mosaicImages[1].caption}</span>
                 </div>
               </div>
 
@@ -105,34 +100,32 @@ export default function MosaicImageGallery() {
                 <div className={`
                   ${mosaicImages[2].className}
                   ${mosaicImages[2].aspectRatio}
-                  overflow-hidden bg-text-secondary
+                  overflow-hidden bg-ink-lighter
                   transition-all duration-700
-                  group-hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.25)]
                 `}>
                   <Image
                     src={mosaicImages[2].src}
                     alt={mosaicImages[2].alt}
                     fill
                     sizes="(max-width: 768px) 50vw, (max-width: 1024px) 28vw, 22vw"
-                    className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.025]"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                   />
                 </div>
-                <div className="absolute bottom-3 right-3 left-3 bg-black/70 backdrop-blur-sm rounded-[10px] px-4 py-3 text-white">
-                  <span className="font-mono text-[10px] text-primary tracking-[0.16em] block mb-1">FIELD NOTES / 0{mosaicImages[2].index}</span>
-                  <h3 className="text-[15px] font-bold leading-[1.4]">{mosaicImages[2].caption}</h3>
+                <div className="mt-3 flex items-center gap-2">
+                  <span className="text-mono text-red-bright font-bold">0{mosaicImages[2].index}</span>
+                  <span className="text-caption font-semibold text-text-dark-secondary">{mosaicImages[2].caption}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-6 lg:mt-8">
+          <div className="mt-8 lg:mt-10">
             <div className="relative group max-w-[1200px] mx-auto">
               <div className={`
                 ${mosaicImages[3].className}
                 ${mosaicImages[3].aspectRatio}
-                overflow-hidden bg-text-secondary
+                overflow-hidden bg-ink-lighter
                 transition-all duration-700
-                group-hover:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.35)]
               `}>
                 <Image
                   src={mosaicImages[3].src}
@@ -140,18 +133,15 @@ export default function MosaicImageGallery() {
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 75vw"
-                  className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.015]"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
               </div>
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-full max-w-[600px] px-4 bg-black/70 backdrop-blur-sm rounded-[12px] py-4 text-center text-white">
-                <span className="font-mono text-[11px] text-primary tracking-[0.16em] block mb-2">FIELD NOTES / 0{mosaicImages[3].index}</span>
-                <h3 className="text-[20px] font-bold leading-[1.4] sm:text-[24px]">{mosaicImages[3].caption}</h3>
+              <div className="mt-4 text-center">
+                <span className="text-mono text-red-bright font-bold">FIELD / 0{mosaicImages[3].index}</span>
+                <h3 className="mt-2 text-h4 font-bold text-white">{mosaicImages[3].caption}</h3>
               </div>
             </div>
           </div>
-
-          <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-[1px] h-16 bg-primary/30 hidden lg:block" aria-hidden="true" />
-          <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary hidden lg:block" aria-hidden="true" />
         </div>
       </div>
     </section>

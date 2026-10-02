@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { NAV_ITEMS } from "@/data/navLinks";
 import ServicesDropdown from "./ServicesDropdown";
@@ -11,19 +12,26 @@ import { HiMenuAlt3 } from "react-icons/hi";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
-      <nav className="h-[76px] bg-background text-black lg:h-[90px]">
+      <nav className="h-[76px] bg-white/95 backdrop-blur-sm border-b border-surface-border lg:h-[90px] sticky top-0 z-[999]">
         <div className="mx-auto flex h-full max-w-[1600px] items-center justify-between gap-6 px-4 sm:px-8">
           <Link href="/" className="shrink-0" aria-label="زاوية الضوء — الرئيسية">
             <img src="/logo.png" alt="شعار زاوية الضوء" className="h-[58px] w-auto object-contain lg:h-[76px]" />
           </Link>
 
-          <ul className="relative hidden items-center gap-8 lg:flex xl:gap-11">
+          <ul className="relative hidden items-center gap-1 lg:flex xl:gap-2">
             {NAV_ITEMS.map((item) => (
               <li key={item.title} className="group relative">
-                <Link href={item.href} className="py-6 text-[14px] font-medium text-black/75 transition hover:text-primary xl:text-[15px]">{item.title}</Link>
+                <Link
+                  href={item.href}
+                  data-active={pathname === item.href ? "true" : undefined}
+                  className="nav-link"
+                >
+                  {item.title}
+                </Link>
                 {item.submenu === "services" && <ServicesDropdown />}
                 {item.submenu === "projects" && <ProjectsDropdown />}
               </li>
@@ -33,19 +41,17 @@ export default function Navbar() {
           <div className="hidden lg:flex">
             <Link
               href="/contact"
-              className="group flex h-12 items-center gap-5 bg-dark-surface py-1 pr-6 pl-1 text-[14px] font-semibold text-white transition hover:bg-primary"
+              className="btn-primary-lg group"
             >
               ابدأ مشروعك
-              <div className="grid h-10 w-10 place-items-center bg-primary text-white transition group-hover:bg-white group-hover:text-primary" style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 24% 100%)" }}>
-                <BsArrowUpRight className="transition duration-500 group-hover:-translate-y-0.5 group-hover:rotate-90" />
-              </div>
+              <BsArrowUpRight size={20} className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
             </Link>
           </div>
 
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
-            className="grid h-12 w-12 place-items-center border border-black/15 bg-white lg:hidden"
+            className="grid h-12 w-12 place-items-center border border-surface-border bg-white rounded-lg lg:hidden hover:bg-surface-hover hover:border-red transition-colors"
             aria-label="فتح القائمة"
             aria-expanded={menuOpen}
           >

@@ -77,7 +77,7 @@ export default function ImageShowcase() {
         <div className="mb-8 flex items-end justify-between gap-6 sm:mb-12 lg:mb-14">
           <div>
             <p className="mb-4 flex items-center gap-3 text-[12px] font-semibold tracking-[0.12em] text-text-secondary sm:text-[13px]">
-              <span className="h-[2px] w-8 bg-primary" /> 02 / من الميدان
+              <span className="h-[2px] w-8 bg-red" /> 02 / من الميدان
             </p>
             <h2 className="text-[34px] font-bold leading-tight text-text-primary sm:text-[46px] lg:text-[60px]">
               أعمالٌ على أرض الواقع
@@ -118,7 +118,7 @@ export default function ImageShowcase() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                    <span className="inline-block px-3 py-1.5 text-[11px] font-semibold tracking-[0.1em] text-white bg-primary/90 backdrop-blur-sm">
+                    <span className="inline-block px-3 py-1.5 text-[11px] font-semibold tracking-[0.1em] text-white bg-red/90 backdrop-blur-sm">
                       {item.caption}
                     </span>
                   </div>

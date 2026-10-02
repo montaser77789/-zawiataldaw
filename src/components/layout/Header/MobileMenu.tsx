@@ -47,24 +47,24 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   return (
     <>
       <div
-        className={`fixed inset-0 z-[1000] bg-black/50 transition-opacity duration-300 lg:hidden ${isOpen ? "visible opacity-100" : "invisible pointer-events-none opacity-0"}`}
+        className={`fixed inset-0 z-[1000] bg-ink/50 transition-opacity duration-300 lg:hidden ${isOpen ? "visible opacity-100" : "invisible pointer-events-none opacity-0"}`}
         onClick={onClose}
         aria-hidden={!isOpen}
       />
 
       <div
-        className={`fixed top-0 right-0 z-[1001] flex h-full w-[min(100%,440px)] flex-col border-l-2 border-primary bg-background shadow-2xl transition-transform duration-300 lg:hidden ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed top-0 right-0 z-[1001] flex h-full w-[min(100%,440px)] flex-col border-l-2 border-red bg-white shadow-2xl transition-transform duration-300 lg:hidden ${isOpen ? "translate-x-0" : "translate-x-full"}`}
         role="dialog"
         aria-modal="true"
         aria-label="القائمة الرئيسية"
       >
-        <div className="flex h-[80px] items-center justify-between border-b px-6">
+        <div className="flex h-[80px] items-center justify-between border-b border-surface-border px-6">
           <img src="/logo.png" alt="شعار زاوية الضوء" className="h-[64px] w-auto object-contain" />
 
           <button
             type="button"
             onClick={onClose}
-            className="grid h-12 w-12 place-items-center border border-border text-black transition hover:border-primary hover:text-primary"
+            className="grid h-12 w-12 place-items-center border border-surface-border text-text-primary rounded-lg transition-colors hover:border-red hover:text-accent hover:bg-surface-hover"
             aria-label="إغلاق القائمة"
           >
             <HiX size={22} />
@@ -72,7 +72,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </div>
 
         <nav className="flex-1 overflow-y-auto px-6 py-8">
-          <ul className="space-y-2">
+          <ul className="space-y-1">
             {NAV_ITEMS.map((item) => (
               <li key={item.title}>
                 {item.submenu ? (
@@ -84,26 +84,24 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                           prev === item.submenu ? null : (item.submenu ?? null),
                         )
                       }
-                      className="flex w-full items-center justify-between border-b border-border px-4 py-4 text-[17px] font-semibold text-black transition hover:text-primary"
+                      className="flex w-full items-center justify-between border-b border-surface-border px-4 py-4 text-body font-semibold text-text-primary transition-colors hover:text-accent hover:bg-surface-hover"
                     >
                       {item.title}
                       <BsChevronDown
-                        className={`transition-transform duration-300 ${openSubmenu === item.submenu ? "rotate-180" : ""}`}
+                        className={`transition-transform duration-300 text-accent ${openSubmenu === item.submenu ? "rotate-180" : ""}`}
                       />
                     </button>
 
                     <div
                       className={`overflow-hidden transition-all duration-300 ${openSubmenu === item.submenu ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"}`}
                     >
-                      <ul className="mr-4 space-y-1 border-r border-border py-2 pr-4">
+                      <ul className="mr-4 space-y-1 border-r border-surface-border py-2 pr-4">
                         {submenuLinks[item.submenu].items.map((entry) => (
                           <li key={entry.slug}>
                             <Link
-                              href={submenuLinks[item.submenu!].href(
-                                entry.slug,
-                              )}
+                              href={submenuLinks[item.submenu!].href(entry.slug)}
                               onClick={onClose}
-                              className="block border-b border-border px-3 py-3 text-[14px] text-text-secondary transition hover:text-primary"
+                              className="block border-b border-surface-border px-3 py-3 text-body-sm font-medium text-text-primary transition-colors hover:text-accent hover:bg-surface-hover"
                             >
                               {entry.title}
                             </Link>
@@ -116,7 +114,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   <Link
                     href={item.href}
                     onClick={onClose}
-                    className="block border-b border-border px-4 py-4 text-[17px] font-semibold text-black transition hover:text-primary"
+                    className="block border-b border-surface-border px-4 py-4 text-body font-semibold text-text-primary transition-colors hover:text-accent hover:bg-surface-hover"
                   >
                     {item.title}
                   </Link>
@@ -126,20 +124,18 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </ul>
         </nav>
 
-        <div className="grid gap-3 border-t border-border bg-surface p-5">
+        <div className="grid gap-3 border-t border-surface-border bg-surface p-5">
           <Link
             href="/contact"
             onClick={onClose}
-            className="group flex h-14 items-center justify-between bg-dark-surface px-5 text-white transition hover:bg-primary"
+            className="btn-primary"
           >
-            <span className="font-medium">اطلب خدماتنا</span>
-            <span className="grid h-10 w-10 place-items-center bg-primary text-white">
-              <BsArrowUpRight className="transition duration-500 group-hover:rotate-90" />
-            </span>
+            اطلب خدماتنا
+            <BsArrowUpRight size={18} className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
           </Link>
           <a
             href={`tel:${contactInfo.phoneTel}`}
-            className="flex h-12 items-center justify-center border border-border bg-white px-6 text-[14px] font-semibold text-text-primary transition hover:border-primary hover:text-primary"
+            className="btn-secondary"
             dir="ltr"
           >
             {contactInfo.phone}

@@ -33,7 +33,7 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="border-r-2 border-primary bg-surface p-8 text-right lg:p-10">
+      <div className="border-r-2 border-red bg-surface p-8 text-right lg:p-10">
         <h3 className="text-[24px] text-text-primary lg:text-[30px]">تم إرسال رسالتك</h3>
         <p className="mt-4 text-[16px] leading-[2] text-text-secondary lg:text-[18px]">
           شكراً لتواصلك معنا. سيقوم فريق زاوية الضوء بالرد عليك في أقرب وقت.
@@ -41,7 +41,7 @@ export default function ContactForm() {
         <button
           type="button"
           onClick={() => setSubmitted(false)}
-          className="mt-6 text-primary transition hover:underline"
+          className="mt-6 text-accent transition hover:underline"
         >
           إرسال رسالة أخرى
         </button>
@@ -61,7 +61,7 @@ export default function ContactForm() {
           required
           value={form.name}
           onChange={(e) => updateField("name", e.target.value)}
-          className="h-[54px] w-full rounded-none border border-border bg-white px-4 text-[16px] outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
+          className="h-[54px] w-full rounded-none border border-surface-border bg-white px-4 text-[16px] outline-none transition focus:border-red focus:ring-1 focus:ring-red"
           placeholder="اسمك الكامل"
         />
       </div>
@@ -77,7 +77,7 @@ export default function ContactForm() {
             required
             value={form.email}
             onChange={(e) => updateField("email", e.target.value)}
-            className="h-[54px] w-full rounded-none border border-border bg-white px-4 text-[16px] outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
+            className="h-[54px] w-full rounded-none border border-surface-border bg-white px-4 text-[16px] outline-none transition focus:border-red focus:ring-1 focus:ring-red"
             placeholder="example@email.com"
             dir="ltr"
           />
@@ -93,7 +93,7 @@ export default function ContactForm() {
             required
             value={form.phone}
             onChange={(e) => updateField("phone", e.target.value)}
-            className="h-[54px] w-full rounded-none border border-border bg-white px-4 text-[16px] outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
+            className="h-[54px] w-full rounded-none border border-surface-border bg-white px-4 text-[16px] outline-none transition focus:border-red focus:ring-1 focus:ring-red"
             placeholder="05xxxxxxxx"
             dir="ltr"
           />
@@ -110,14 +110,14 @@ export default function ContactForm() {
           rows={5}
           value={form.message}
           onChange={(e) => updateField("message", e.target.value)}
-          className="w-full resize-y rounded-none border border-border bg-white px-4 py-3 text-[16px] outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
+          className="w-full resize-y rounded-none border border-surface-border bg-white px-4 py-3 text-[16px] outline-none transition focus:border-red focus:ring-1 focus:ring-red"
           placeholder="اكتب رسالتك هنا..."
         />
       </div>
 
       <button
         type="submit"
-        className="inline-flex h-[58px] items-center gap-3 bg-primary px-8 text-white transition hover:bg-dark-surface lg:h-[64px]"
+        className="inline-flex h-[58px] items-center gap-3 bg-red px-8 text-white transition hover:bg-ink lg:h-[64px]"
       >
         <BsSend size={18} />
         <span>إرسال الرسالة</span>

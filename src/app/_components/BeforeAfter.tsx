@@ -20,26 +20,24 @@ export default function BeforeAfter() {
   };
 
   return (
-    <section className="px-3 py-16 sm:px-5 sm:py-20 lg:py-28">
+    <section className="section px-4 sm:px-6 lg:px-8 xl:px-10">
       <div className="mx-auto grid max-w-[1500px] gap-8 lg:grid-cols-[0.34fr_0.66fr] lg:items-center lg:gap-14">
         <div className="lg:py-8">
-          <p className="mb-4 flex items-center gap-3 text-[12px] font-semibold tracking-[0.12em] text-text-secondary sm:text-[13px]">
-            <span className="h-[2px] w-8 bg-primary" /> 05 / أثر الضوء
-          </p>
-          <h2 className="text-[34px] font-bold leading-[1.3] text-text-primary sm:text-[44px] lg:text-[52px]">فرقٌ يظهر على الطريق</h2>
-          <p className="mt-5 max-w-[450px] text-[15px] leading-[2] text-text-secondary sm:text-[17px] lg:mt-7">
+          <p className="section-label">05 / أثر الضوء</p>
+          <h2 className="section-title">فرقٌ يظهر على الطريق</h2>
+          <p className="mt-5 max-w-[450px] text-body text-text-secondary sm:text-body-lg lg:mt-7">
             قارن بين مشهد الطريق قبل الإنارة وبعدها بتحريك المؤشر عبر الصورة.
           </p>
-          <div className="mt-8 flex items-center gap-5 text-[12px] font-semibold sm:mt-10 sm:text-[13px]">
-            <span className="flex items-center gap-2"><i className="h-2 w-2 bg-black" /> قبل</span>
-            <span className="h-px w-10 bg-primary" />
-            <span className="flex items-center gap-2"><i className="h-2 w-2 bg-primary" /> بعد</span>
+          <div className="mt-8 flex items-center gap-5 text-caption font-semibold text-text-secondary sm:mt-10 sm:text-body-sm">
+            <span className="flex items-center gap-2"><i className="h-2.5 w-2.5 rounded-full bg-ink" /> قبل</span>
+            <span className="h-px w-12 bg-red" />
+            <span className="flex items-center gap-2"><i className="h-2.5 w-2.5 rounded-full bg-red" /> بعد</span>
           </div>
         </div>
 
         <div
           ref={containerRef}
-          className="relative h-[320px] select-none overflow-hidden bg-black sm:h-[460px] lg:h-[560px]"
+          className="relative h-[320px] select-none overflow-hidden rounded-xl bg-ink sm:h-[460px] lg:h-[560px]"
           onMouseMove={(event) => move(event.clientX)}
           onMouseUp={() => (dragging.current = false)}
           onMouseLeave={() => (dragging.current = false)}
@@ -50,7 +48,7 @@ export default function BeforeAfter() {
           <div className="absolute inset-0" style={{ clipPath: `polygon(0 0, ${position}% 0, ${position}% 100%, 0 100%)` }}>
             <Image src="/compare/before.jpg" alt="الطريق قبل الإنارة" fill sizes="(max-width: 1024px) 100vw, 65vw" className="object-cover" />
           </div>
-          <span className="absolute bottom-4 right-4 bg-black/65 px-3 py-2 text-[11px] font-semibold text-white sm:bottom-6 sm:right-6 sm:px-4 sm:text-[12px]">مقارنة بصرية</span>
+          <span className="absolute bottom-4 right-4 rounded-lg bg-ink/90 px-4 py-2.5 text-caption font-semibold text-white backdrop-blur-sm sm:bottom-6 sm:right-6">مقارنة بصرية</span>
           <div className="absolute bottom-0 top-0 w-[2px] bg-white" style={{ left: `${position}%` }} />
           <button
             type="button"
@@ -67,7 +65,7 @@ export default function BeforeAfter() {
             aria-valuemax={100}
             aria-valuenow={Math.round(position)}
             tabIndex={0}
-            className="absolute top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center border-2 border-primary bg-white text-primary shadow-lg sm:h-14 sm:w-14"
+            className="absolute top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-lg border-2 border-red bg-white text-accent shadow-lg transition-transform hover:scale-110 sm:h-14 sm:w-14"
           >
             <BsChevronRight /><BsChevronLeft />
           </button>
