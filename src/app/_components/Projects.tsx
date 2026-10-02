@@ -3,75 +3,122 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpLeft } from "lucide-react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
 import { projects } from "../data/heroData";
+import { PROJECT_TYPES, type ProjectType } from "@/data/projects";
+import { useState } from "react";
+
+const typeLabels: Record<ProjectType, string> = {
+  "street-lighting": "طريقية",
+  "decorative-lighting": "ديكورية",
+  "urban-lighting": "حضرية",
+  "industrial-lighting": "صناعية",
+};
+
+const typeColors: Record<ProjectType, string> = {
+  "street-lighting": "bg-amber-600/20 text-amber-500 border-amber-500/30",
+  "decorative-lighting": "bg-pink-600/20 text-pink-500 border-pink-500/30",
+  "urban-lighting": "bg-blue-600/20 text-blue-500 border-blue-500/30",
+  "industrial-lighting": "bg-orange-600/20 text-orange-500 border-orange-500/30",
+};
 
 export default function Projects() {
+  const [activeType, setActiveType] = useState<ProjectType | "all">("all");
+
+  const filteredProjects = activeType === "all"
+    ? projects
+    : projects.filter((p) => p.type === activeType);
+
   return (
     <section className="overflow-hidden bg-[#e6e3dc] py-16 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-7 lg:px-10">
-        <div className="mb-8 flex items-end justify-between gap-6 sm:mb-12 lg:mb-14">
+        <div className="mb-10 flex flex-col justify-between gap-6 sm:mb-14 lg:flex-row lg:items-end">
           <div>
             <p className="mb-4 flex items-center gap-3 text-[12px] font-semibold tracking-[0.12em] text-text-secondary sm:text-[13px]">
-              <span className="h-[2px] w-8 bg-primary" /> 02 / من الميدان
+              <span className="h-[2px] w-8 bg-primary" /> 02 / سجل الأعمال
             </p>
-            <h2 className="text-[34px] font-bold leading-tight text-text-primary sm:text-[46px] lg:text-[60px]">أعمالٌ على أرض الواقع</h2>
+            <h2 className="text-[34px] font-bold leading-tight text-text-primary sm:text-[46px] lg:text-[60px]">
+              مشاريع <span className="text-primary">بأيدينا</span>
+            </h2>
           </div>
-          <Link href="/projects" className="hidden items-center gap-3 border-b border-black/30 pb-2 text-[14px] font-semibold transition hover:border-primary hover:text-primary sm:inline-flex">
-            كل المشاريع <ArrowUpLeft size={18} />
-          </Link>
+
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => setActiveType("all")}
+              aria-pressed={activeType === "all"}
+              className={`px-4 py-2 text-[12px] font-semibold tracking-[0.08em] rounded-full border transition ${activeType === "all" ? "bg-primary text-white border-primary" : "bg-background text-text-secondary border-border hover:border-primary hover:text-primary"}`}
+            >
+              الكل
+            </button>
+            {PROJECT_TYPES.map((type) => (
+              <button
+                key={type.value}
+                type="button"
+                onClick={() => setActiveType(type.value)}
+                aria-pressed={activeType === type.value}
+                className={`px-4 py-2 text-[12px] font-semibold tracking-[0.08em] rounded-full border transition ${activeType === type.value ? "bg-primary text-white border-primary" : "bg-background text-text-secondary border-border hover:border-primary hover:text-primary"}`}
+              >
+                {type.label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          loop
-          autoplay={{ delay: 5200, disableOnInteraction: false, pauseOnMouseEnter: true }}
-          pagination={{ clickable: true }}
-          spaceBetween={14}
-          slidesPerView={1.03}
-          breakpoints={{ 700: { slidesPerView: 1.08, spaceBetween: 22 } }}
-          dir="rtl"
-          className="project-story-swiper"
-        >
-          {projects.map((item, index) => (
-            <SwiperSlide key={item.id}>
-              <Link href={`/projects/${item.slug}`} className="group grid overflow-hidden bg-dark-surface text-white lg:min-h-[530px] lg:grid-cols-[0.82fr_1.18fr]">
-                <div className="relative order-2 min-h-[330px] overflow-hidden sm:min-h-[440px] lg:order-1 lg:min-h-[530px]">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" role="list" aria-label="قائمة المشاريع">
+          {filteredProjects.map((item, index) => (
+            <article key={item.id} className="group relative overflow-hidden bg-background" role="listitem">
+              <Link href={`/projects/${item.slug}`} className="block group">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
-                    sizes="(max-width: 1024px) 100vw, 58vw"
-                    className="object-cover transition duration-700 group-hover:scale-[1.035]"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent lg:bg-gradient-to-l lg:from-black/20 lg:to-transparent" />
-                  <span className="absolute left-5 top-5 font-mono text-[12px] text-white/70 sm:left-8 sm:top-8">ZA / 0{index + 1}</span>
-                </div>
-                <div className="relative order-1 flex flex-col justify-center px-6 py-10 sm:px-10 lg:order-2 lg:px-12 xl:px-16">
-                  <span className="absolute right-0 top-0 h-14 w-14 bg-primary" style={{ clipPath: "polygon(0 0,100% 0,0 100%)" }} aria-hidden="true" />
-                  <div className="mb-8 flex flex-wrap gap-x-5 gap-y-2 text-[12px] text-white/55 sm:text-[13px]">
-                    <span>{item.year}</span><span>{item.location}</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-semibold tracking-[0.1em] rounded-full border ${typeColors[item.type]}`}>
+                      {typeLabels[item.type]}
+                    </span>
                   </div>
-                  <h3 className="max-w-[560px] text-[30px] font-bold leading-[1.35] sm:text-[40px] lg:text-[50px]">{item.title}</h3>
-                  <p className="mt-5 max-w-[570px] text-[15px] leading-[1.9] text-white/65 sm:text-[17px] lg:mt-7">
+
+                  <div className="absolute bottom-3 left-3 right-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    <span className="font-mono text-[11px] text-white/80 tracking-[0.16em]">ZA / {String(index + 1).padStart(2, "0")}</span>
+                  </div>
+                </div>
+
+                <div className="p-5 sm:p-6">
+                  <div className="mb-3 flex items-center gap-2 text-[11px] text-text-secondary">
+                    <span className="font-mono text-primary">{item.year}</span>
+                    <span className="h-px w-8 bg-border" />
+                    <span className="truncate">{item.location}</span>
+                  </div>
+                  <h3 className="text-[19px] font-bold leading-[1.4] text-text-primary group-hover:text-primary transition-colors sm:text-[22px]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-[13px] leading-[1.8] text-text-secondary line-clamp-2 sm:text-[14px]">
                     {item.description}
                   </p>
-                  <span className="mt-8 inline-flex w-fit items-center gap-3 border-b border-white/30 pb-3 text-[14px] font-semibold transition group-hover:border-primary group-hover:text-white lg:mt-10">
-                    استكشف تفاصيل المشروع <ArrowUpLeft size={18} className="text-primary transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-                  </span>
                 </div>
               </Link>
-            </SwiperSlide>
+
+              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            </article>
           ))}
-        </Swiper>
-        <div className="mt-10 flex items-center justify-between sm:hidden">
+
+          {filteredProjects.length === 0 && (
+            <div className="col-span-full py-16 text-center text-text-secondary">
+              لا توجد مشاريع في هذا التصنيف
+            </div>
+          )}
+        </div>
+
+        <div className="mt-10 text-center sm:hidden">
           <Link href="/projects" className="inline-flex items-center gap-3 border-b border-black/30 pb-2 text-[14px] font-semibold">
-            كل المشاريع <ArrowUpLeft size={18} />
+            عرض كل المشاريع <ArrowUpLeft size={18} />
           </Link>
-          <span className="text-[11px] text-text-secondary">اسحب لاستعراض الأعمال</span>
         </div>
       </div>
     </section>

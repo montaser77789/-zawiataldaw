@@ -2,10 +2,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BsArrowUpRight, BsCheckLg } from "react-icons/bs";
-import { getProjectBySlug, PROJECTS } from "@/data/projects";
+import { getProjectBySlug, PROJECTS, type ProjectType } from "@/data/projects";
 
 type Props = {
   params: Promise<{ slug: string }>;
+};
+
+const typeLabels: Record<ProjectType, string> = {
+  "street-lighting": "إنارة طرقية",
+  "decorative-lighting": "إنارة ديكورية",
+  "urban-lighting": "إنارة حضرية",
+  "industrial-lighting": "إنارة صناعية",
+};
+
+const typeColors: Record<ProjectType, string> = {
+  "street-lighting": "bg-amber-600/20 text-amber-500 border-amber-500/30",
+  "decorative-lighting": "bg-pink-600/20 text-pink-500 border-pink-500/30",
+  "urban-lighting": "bg-blue-600/20 text-blue-500 border-blue-500/30",
+  "industrial-lighting": "bg-orange-600/20 text-orange-500 border-orange-500/30",
 };
 
 export async function generateStaticParams() {
@@ -42,10 +56,16 @@ export default async function ProjectPage({ params }: Props) {
         <div className="relative order-2 min-h-[320px] lg:order-1 lg:min-h-[560px]">
           <Image src={project.image} alt={project.title} fill priority sizes="(max-width: 1024px) 100vw, 58vw" className="object-cover" />
           <span className="absolute bottom-0 right-0 h-14 w-14 bg-primary" style={{ clipPath: "polygon(0 100%,100% 100%,100% 0)" }} aria-hidden="true" />
+          
+          <div className="absolute top-5 right-5">
+            <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold tracking-[0.1em] rounded-full border ${typeColors[project.type]}`}>
+              {typeLabels[project.type]}
+            </span>
+          </div>
         </div>
         <div className="relative order-1 flex flex-col justify-center px-5 py-12 sm:px-9 lg:order-2 lg:px-14 lg:py-20">
           <span className="absolute right-0 top-0 h-14 w-14 bg-primary" style={{ clipPath: "polygon(0 0,100% 0,0 100%)" }} aria-hidden="true" />
-          <span className="font-mono text-[12px] text-primary">FIELD RECORD / {project.year}</span>
+          <span className="font-mono text-[12px] text-primary">سجل الأعمال / {project.year}</span>
           <h1 className="mt-5 max-w-[700px] text-[34px] font-bold leading-[1.3] sm:text-[48px] lg:text-[60px]">{project.title}</h1>
           <p className="mt-5 text-[14px] text-white/65 sm:text-[17px]">{project.location}</p>
           <Link href="/projects" className="mt-9 inline-flex w-fit items-center gap-3 border-b border-white/35 pb-3 text-[13px] font-semibold transition hover:border-primary sm:mt-12 sm:text-[14px]">
@@ -97,6 +117,14 @@ export default async function ProjectPage({ params }: Props) {
                 <dt className="text-white/60">الموقع</dt>
                 <dd className="mt-1 text-[18px] leading-[1.8]">{project.location}</dd>
               </div>
+              <div>
+                <dt className="text-white/60">نوع المشروع</dt>
+                <dd className="mt-1">
+                  <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-semibold tracking-[0.1em] rounded-full border ${typeColors[project.type]}`}>
+                    {typeLabels[project.type]}
+                  </span>
+                </dd>
+              </div>
             </dl>
           </aside>
         </div>
@@ -123,6 +151,11 @@ export default async function ProjectPage({ params }: Props) {
                       fill
                       className="object-cover transition duration-700 group-hover:scale-105"
                     />
+                    <div className="absolute top-3 right-3">
+                      <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-semibold tracking-[0.1em] rounded-full border ${typeColors[item.type]}`}>
+                        {typeLabels[item.type]}
+                      </span>
+                    </div>
                   </div>
                   <div className="p-5 sm:p-6">
                     <span className="text-primary text-[16px]">{item.year}</span>
